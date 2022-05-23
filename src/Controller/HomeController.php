@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Form\MapType;
 use App\Service\Curl;
+use App\Service\CurlS;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -14,7 +15,7 @@ class HomeController extends AbstractController
     /**
      * @Route("/home", name="home")
      */
-    public function index(Request $request, Curl $curl): Response
+    public function index(Request $request, Curl $curl, CurlS $curls): Response
     {
         $form = $this->createForm(MapType::class);
         $form->handleRequest($request);
@@ -24,12 +25,15 @@ class HomeController extends AbstractController
             $city = $form->get('ville')->getData();
             $postal = $form->get('codepostal')->getData();
             
-            $reponse = $curl->curl($city, $postal); //Je stocke dans $reponse
-            //dd($reponse);
-//CRéer un tableau associatif pour y stocker la lat et la lon
-        $lat = $reponse[0]['lat'];
-        $lon = $reponse[0]['lon'];
-        
+            $reponse = $curls->curl($city, $postal); //Je stocke dans $reponse
+ 
+            if(empty($reponse) ){
+                $lat = 48.85;
+                $lon = 2.35;
+            } else {
+            $lat = $reponse[0]['lat'];
+            $lon = $reponse[0]['lon'];
+            }
         }
 
         return $this->render('home/index.html.twig', [
