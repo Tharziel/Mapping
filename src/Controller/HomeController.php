@@ -21,6 +21,7 @@ class HomeController extends AbstractController
         $form->handleRequest($request);
         $lat = 48.85;
         $lon = 2.35;
+        $message = 'Saisissez une ville et un code postal :';
         if($form->isSubmitted() && $form->isValid()){
             $city = $form->get('ville')->getData();
             $postal = $form->get('codepostal')->getData();
@@ -30,6 +31,7 @@ class HomeController extends AbstractController
             if(empty($reponse) ){
                 $lat = 48.85;
                 $lon = 2.35;
+                $message = "Veuillez saisir un nom de ville et un code postal corrects !";
             } else {
             $lat = $reponse[0]['lat'];
             $lon = $reponse[0]['lon'];
@@ -40,7 +42,8 @@ class HomeController extends AbstractController
             'controller_name' => 'HomeController',
             'lat' =>$lat,
             'lon' => $lon,
-            'form' => $form->createView(),
+            'mess' => $message,
+            'form' => $form->createView()
         ]);
     }
 }
