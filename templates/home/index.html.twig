@@ -4,9 +4,12 @@
 
 {% block body %}
 <h1>Map </h1>
-<input type="number" placeholder="Code Postal">
-<input type="text" placeholder="Ville">
-<input type="submit" value="Rechercher">
+{{ form_start(form)}}
+{{ form_row(form.codepostal)}}
+{{ form_row(form.ville)}}
+{{ form_end(form)}}
+<input type="text" name="" id="lon" value="{{ lon }}">
+<input type="text" name="" id="lat" value="{{ lat }}">
              <div id="map">
              
              </div>

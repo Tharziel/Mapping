@@ -1,4 +1,6 @@
-let map = L.map('map').setView([48.8, 2.35], 13);
+let lon = document.getElementById('lon').value;
+let lat = document.getElementById('lat').value;
+let map = L.map('map').setView([lat, lon], 13); //48.8 = lat, lon = 2.35 donc je remplace ça par les valeurs de mon tableau coor
 
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
