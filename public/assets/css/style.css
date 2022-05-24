@@ -1,1 +1,48 @@
-#map { height: 400px; width: 1000px;}
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;1,100;1,300;1,400&display=swap');
+
+* {
+    font-family: 'Roboto', sans-serif;
+}
+
+body {
+    background-color: burlywood;
+    
+}
+
+.form { 
+    border: 2px solid #000;
+    border-radius: 8px;
+    margin-bottom : 5px;
+    padding-bottom: 5px;}
+
+.form_l{
+    margin-left: 5px;
+    
+}
+
+.form_r{
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    
+}
+
+#lon, #lat {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+#map { 
+    height: 400px; 
+    width: 1000px;}
+
+.search {
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-top: 5px;
+    margin-bottom: 5px; }
+    
+h1 {
+    text-align: center;
+}

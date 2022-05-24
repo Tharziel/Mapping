@@ -3,15 +3,53 @@
 {% block title %}{% endblock %}
 
 {% block body %}
+
 <h1>Map </h1>
+<div class="form">
 <p>{{ mess }}</p>
 {{ form_start(form)}}
-{{ form_row(form.codepostal)}}
-{{ form_row(form.ville)}}
+{{ form_label(form.codepostal, 'Code Postal :', {'label_attr': {'class': 'form_l'}}) }}
+{{ form_widget(form.codepostal, {'attr': {'class': 'form_r'}})}}
+{{ form_label(form.ville, 'Ville : ', {'label_attr': {'class': 'form_l'}}) }}
+{{ form_widget(form.ville, {'attr': {'class': 'form_r'}})}}
 {{ form_end(form)}}
+
+
+</div>
+<div id="map">
+             
+</div>
 <input type="text" name="" id="lon" value="{{ lon }}">
 <input type="text" name="" id="lat" value="{{ lat }}">
-             <div id="map">
-             
-             </div>
+<a href="" id="dl">Imprimer</a>
+<a href="{{ path('pdf',
+{'ville':ville|replace({' ':'-'}),
+ 'lat':lat|replace({'.':'a'}),
+ 'lon':lon|replace({'.':'a'})} ) }}" id="coor">Télécharger les coordonnées</a>
+
+<h2>Recevoir par mail</h2>
+
+ {{ form_start(form2)}}
+<div>
+{{ form_label(form2.ville, 'Ville : ', {'label_attr': {'class': 'form_l'}}) }}
+{{ form_widget(form2.ville, {'attr': {'class': 'form_r', 'value': ville}})}}
+</div>
+<div>
+{{ form_label(form2.latitude, 'Latitude : ', {'label_attr': {'class': 'form_l'}}) }}
+{{ form_widget(form2.latitude, {'attr': {'class': 'form_r', 'value': lat}})}}
+</div>
+<div>
+{{ form_label(form2.longitude, 'Longitude : ', {'label_attr': {'class': 'form_l'}}) }}
+{{ form_widget(form2.longitude, {'attr': {'class': 'form_r', 'value': lon}})}}
+</div>
+<div>
+{{ form_label(form2.mail, 'Mail : ', {'label_attr': {'class': 'form_l'}}) }}
+{{ form_widget(form2.mail, {'attr': {'class': 'form_r'}})}}
+</div>
+<div>
+{{ form_label(form2.note, 'Note : ', {'label_attr': {'class': 'form_l'}}) }}
+{{ form_widget(form2.note, {'attr': {'class': 'form_r'}})}}
+</div>
+{{ form_end(form2)}}
+
 {% endblock %}
